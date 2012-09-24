@@ -1,0 +1,78 @@
+name:           cvector
+version:        0.0.1
+synopsis:       Vectors supporting efficient pushBack and popBack operations
+description:    Wrapper around vector that implements efficient pushBack and
+                popBack method (similar to std::vector in C++).  The underlying
+                'Vector' is doubled in size as needed.
+homepage:       https://github.com/michalt/cvector
+bug-reports:    https://github.com/michalt/cvector/issues
+license:        BSD3
+license-file:   LICENSE
+author:         Michal Terepeta
+maintainer:     michal.terepeta@gmail.com
+copyright:      (c) 2012-2013 Michal Terepeta
+category:       Data
+build-type:     Simple
+cabal-version:  >=1.8
+
+source-repository head
+  type:         git
+  location:     https://github.com/michalt/cvector.git
+
+flag debug
+  description:  Enable debug support (asserts/bounds checking)
+  default:      False
+
+library
+  exposed-modules:
+    Data.CVector,
+    Data.CVector.Mutable,
+    Data.CVector.Unboxed,
+    Data.CVector.Unboxed.Mutable,
+    Data.CVector.Generic,
+    Data.CVector.Generic.Mutable
+
+  other-modules:
+    Data.CVector.GenericInternal
+    Data.CVector.Generic.MutableInternal
+
+  build-depends:
+    base >=4.5,
+    vector >=0.9,
+    ghc-prim >=0.2,
+    primitive >=0.4,
+    deepseq >=1.3
+
+  ghc-options: -O2
+
+  if flag(debug)
+    ghc-options: -Wall -fno-ignore-asserts
+    cpp-options: -DBOUNDS_CHECKING
+
+test-suite properties
+  hs-source-dirs: tests
+  main-is: Properties.hs
+  type: exitcode-stdio-1.0
+
+  build-depends:
+    base,
+    cvector,
+    QuickCheck >= 2.4.0.1,
+    test-framework >= 0.3.3,
+    test-framework-quickcheck2 >= 0.2.9
+
+  ghc-options: -Wall -fno-ignore-asserts
+
+benchmark benchmarks
+  hs-source-dirs: benchmarks
+  main-is: Benchmarks.hs
+  type: exitcode-stdio-1.0
+
+  build-depends:
+    base,
+    criterion,
+    cvector,
+    deepseq,
+    vector
+
+  ghc-options: -O2
