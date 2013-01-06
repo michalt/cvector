@@ -1,6 +1,6 @@
 -- |
 -- Module      : Data.CVector
--- Copyright   : (c) Michal Terepeta 2012-2013
+-- Copyright   : (c) 2012-2013 Michal Terepeta
 -- License     : BSD-style
 --
 -- Maintainer  : Michal Terepeta <michal.terepeta@gmail.com>

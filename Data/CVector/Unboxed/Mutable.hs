@@ -1,7 +1,7 @@
 -- |
 -- Module      : Data.CVector.Mutable
--- Copyright   : (c) Michal Terepeta 2012-2013
---               (c) Roman Leshchinskiy 2009-2010
+-- Copyright   : (c) 2012-2013 Michal Terepeta
+--               (c) 2009-2010 Roman Leshchinskiy
 -- License     : BSD-style
 --
 -- Maintainer  : Michal Terepeta <michal.terepeta@gmail.com>
